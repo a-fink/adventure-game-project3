@@ -59,7 +59,6 @@ function processCommand() {
 
     if (cmd === 'h') {
       printHelp();
-      return;
 
     } else if (cmd === 'q') {
       rl.close();
