@@ -204,5 +204,3 @@ describe ('Enemy', function () {
   });
 
 });
-
-

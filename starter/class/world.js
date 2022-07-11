@@ -2,6 +2,8 @@ const { Room } = require('./room');
 const { Item } = require('./item');
 const { Food } = require('./food');
 const { Enemy } = require('./enemy');
+const { Weapon } = require('./weapon');
+const { Armor } = require('./armor');
 
 class World {
 
@@ -66,8 +68,15 @@ class World {
       let newItem;
 
       if (itemData.isFood) {
-        newItem = new Food(itemData.name, itemData.description);
-      } else {
+        newItem = new Food(itemData.name, itemData.description, itemData.hitpoints);
+      }
+      else if(itemData.isWeapon){
+        newItem = new Weapon(itemData.name, itemData.description, itemData.bonus);
+      }
+      else if(itemData.isArmor){
+        newItem = new Armor(itemData.name, itemData.description, itemData.damageReduction);
+      }
+      else {
         newItem = new Item(itemData.name, itemData.description);
       }
 

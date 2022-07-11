@@ -21,6 +21,7 @@ function printHelp() {
   console.log("  Type 'take <item>' to take an item");
   console.log("  Type 'drop <item>' to drop an item");
   console.log("  Type 'eat <item>' to eat a food item");
+  console.log("  Tyle 'hit <enemy name> to attack an enemy");
   console.log("  Type 'n', 's', 'e', 'w' to move");
   console.log("");
 }
@@ -93,6 +94,7 @@ function processCommand() {
       let enemyName = cmd.split(" ")[1];
 
       player.hit(enemyName);
+
 
     } else {
       console.log("Invalid command. Type 'h' for help.");

@@ -52,15 +52,38 @@ class Room {
   }
 
   getItemByName(name) {
-
     // Fill this in
+    // go through the item array in the room
+    // for each item object in the array check if its name is the same as the name we're looking for
+    // if it is remove it from the room's array and return it
+    for (let i = 0; i < this.items.length; i++){
+      let item = this.items[i];
+      if (item.name === name){
+        this.items.splice(i, 1);
+        return item;
+      }
+    }
 
+    // if make it this far return null
+    return null;
   }
 
   getEnemyByName(name) {
-
     // Fill this in
+    // get the array of all enemies in this room
+    let enemiesInRoom = this.getEnemies();
+    // for each enemy in the array see if it's name matches the given name
+    // if it does - return it
+    for (let i = 0; i < enemiesInRoom.length; i++){
+      let enemy = enemiesInRoom[i];
+      if(enemy.name === name){
+        return enemy;
+      }
+    }
 
+    // if none found return null
+    return null;
+  }
 }
 
 module.exports = {
