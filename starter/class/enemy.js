@@ -10,8 +10,8 @@ class Enemy extends Character {
   constructor(name, description, currentRoom) {
     // Fill this in
     super(name, description, currentRoom);
-    // set a default cooldown property of 3000 ms
-    this.cooldown = 3000;
+    // set a default cooldown property of 10000 ms
+    this.cooldown = 10000;
     // set the default target to null - tests call this property attackTarget
     this.attackTarget = null;
     // start the process of actions
@@ -22,11 +22,10 @@ class Enemy extends Character {
     this.player = player;
   }
 
-
   randomMove() {
     // Fill this in
-    // reset the cooldown back to 3000ms
-    this.cooldown += 3000;
+    // reset the cooldown back to 10000ms
+    this.cooldown += 10000;
     // get an array of valid exits from this room
     const validMoves = this.currentRoom.getExits();
     // as long as validMoves is not empty - pick a new room and go there
@@ -78,8 +77,8 @@ class Enemy extends Character {
   // only called when enemy has a target player already and both enemy/target are in the same room
   attack() {
     // Fill this in
-    // reset the cooldown back to 3000ms
-    this.cooldown += 3000;
+    // reset the cooldown back to 10,000ms
+    this.cooldown += 10000;
     // apply enemy's strength worth of damage to its target player
     this.attackTarget.applyDamage(this.strength);
   }
@@ -133,7 +132,7 @@ class Enemy extends Character {
   }
 
   scratchNose() {
-    this.cooldown += 3000;
+    this.cooldown += 10000;
     this.alert(`${this.name} scratches its nose`);
   }
 }

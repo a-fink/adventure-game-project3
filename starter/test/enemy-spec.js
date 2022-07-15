@@ -159,8 +159,8 @@ describe ('Enemy', function () {
   });
 
 
-  it('should have a cooldown attribute that defaults to 3000ms', function () {
-    expect(enemy.cooldown).to.equal(3000);
+  it('should have a cooldown attribute that defaults to 10,000ms', function () {
+    expect(enemy.cooldown).to.equal(10000);
   });
 
 

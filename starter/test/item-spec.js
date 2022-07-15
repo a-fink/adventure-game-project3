@@ -133,9 +133,4 @@ describe ('Food', function () {
 
     expect(player.items.length).to.equal(1);
   });
-
-
-
-
 });
-
