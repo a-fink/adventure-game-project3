@@ -4,6 +4,7 @@ const {Food} = require('./food');
 const {Weapon} = require('./weapon');
 const {Armor} = require('./armor');
 const {Room} = require('./room');
+const {Buff} = require('./buff');
 
 class Player extends Character {
 
@@ -148,6 +149,50 @@ class Player extends Character {
     // after search all items, if removed is still false, tell player the item they tried to eat is not food
     if(removed === false){
       console.log(`${itemName} is not edible.`);
+    }
+  }
+
+  useItem(itemName){
+    let itemUsed = false;
+    // go through item array in player inventory
+    // for each item in the array check if its name is the same name as what we're looking for
+    // if find, check if item is of type Buff
+    // if both true, send item to useBuff helper
+    for (let i =0; i < this.items.length; i++){
+      let item = this.items[i];
+      if(item.name === itemName){
+        if(item instanceof Buff){
+          this.useBuff(item);
+          itemUsed = true;
+        }
+      }
+    }
+    // after search all items, if found is still false, tell player the item they tried to use is not a buff
+    if (itemUsed === false){
+      console.log(`${itemName} is not a buff.`);
+    }
+  }
+
+  useBuff(buff){
+    // if used property is true, the item has already been used, tell player they can't use it again
+    if (buff.used === true){
+      console.log(`${buff.name} has already been used`);
+    }
+    else{
+      // if not used, increase strength by the bonus amount, and tell player
+      let duration = buff.duration;
+      this.strength += buff.strengthBonus;
+      console.log(`You used ${buff.description}. Your strength has been increased to ${this.strength} for ${duration / 1000} seconds.`);
+      // set used to true and buff duration to 0, and set timout for duration, once timeout finishes call removeBuff helper
+      buff.used = true;
+      buff.duration = 0;
+      setTimeout(() => this.removeBuff(buff), duration);
+    }
+  }
+
+  removeBuff = (buff) => {
+    if(buff.duration === 0){
+      this.strength -= buff.strengthBonus;
     }
   }
 
