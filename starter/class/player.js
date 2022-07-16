@@ -134,6 +134,7 @@ class Player extends Character {
     // for each item object in the array check if its name is the same name as the name we're looking for
     // if it is, check if the item with the matching name is of type food
     // if both true, remove food item from items array, increase health by the food's hitpoint value, and tell player
+    // added a break after first thing eaten so only eat 1st instance in items
     for (let i = 0; i < this.items.length; i++){
       let item = this.items[i];
       if (item.name === itemName){
@@ -142,6 +143,7 @@ class Player extends Character {
               console.log(`You ate ${item.description}. Health increased to ${this.health}.`);
               this.items.splice(i, 1);
               removed = true;
+              break;
           }
       }
     }
@@ -158,12 +160,14 @@ class Player extends Character {
     // for each item in the array check if its name is the same name as what we're looking for
     // if find, check if item is of type Buff
     // if both true, send item to useBuff helper
+    // added a break after first thing used so only use 1st instance in items
     for (let i =0; i < this.items.length; i++){
       let item = this.items[i];
       if(item.name === itemName){
         if(item instanceof Buff){
           this.useBuff(item);
           itemUsed = true;
+          break;
         }
       }
     }
@@ -190,9 +194,11 @@ class Player extends Character {
     }
   }
 
+  // remove buff helper to be called once timer runs out, reduce strenght back to normal and tell player
   removeBuff = (buff) => {
     if(buff.duration === 0){
       this.strength -= buff.strengthBonus;
+      console.log(`${buff.description} buff has worn off. Your strength has been decreased to ${this.strength}.`);
     }
   }
 

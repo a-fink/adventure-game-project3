@@ -4,6 +4,8 @@ const { Food } = require('./food');
 const { Enemy } = require('./enemy');
 const { Weapon } = require('./weapon');
 const { Armor } = require('./armor');
+const { Buff } = require('./buff');
+const { Boss } = require('./boss');
 
 class World {
 
@@ -76,6 +78,9 @@ class World {
       else if(itemData.isArmor){
         newItem = new Armor(itemData.name, itemData.description, itemData.damageReduction);
       }
+      else if(itemData.isBuff){
+        newItem = new Buff(itemData.name, itemData.description, itemData.bonus, itemData.duration);
+      }
       else {
         newItem = new Item(itemData.name, itemData.description);
       }
@@ -89,7 +94,13 @@ class World {
 
       let enemyData = enemyList[i];
       let enemyRoom = World.rooms[enemyData.room];
-      let newEnemy = new Enemy(enemyData.name, enemyData.description, enemyRoom);
+      let newEnemy;
+      if(enemyData.isBoss){
+        newEnemy = new Boss(enemyData.name, enemyData.description, enemyRoom);
+      }
+      else{
+        newEnemy = new Enemy(enemyData.name, enemyData.description, enemyRoom);
+      }
       World.enemies.push(newEnemy);
     }
 

@@ -9,8 +9,8 @@ module.exports = {
     {
       id: 2,
       name: "Northern point",
-      description: "You are standing at the north point of a crossroad. To the south, west, and east, you see an empty intersection.",
-      exits: {s: 1, e: 3, w: 9}
+      description: "You are standing at the north point of a crossroad. To the south, west, and east, you see an empty intersection. To the north you see a cave.",
+      exits: {s: 1, e: 3, w: 9, n: 10}
     },
     {
       id: 3,
@@ -21,8 +21,8 @@ module.exports = {
     {
       id: 4,
       name: "Eastern point",
-      description: "You are standing at the east point of a crossroad. To the west, north, and south, you see an empty intersection.",
-      exits: {w: 1, n: 3, s: 5}
+      description: "You are standing at the east point of a crossroad. To the west, north, and south, you see an empty intersection. To the east you see a cave.",
+      exits: {w: 1, n: 3, s: 5, e: 11}
     },
     {
       id: 5,
@@ -33,8 +33,8 @@ module.exports = {
     {
       id: 6,
       name: "Southern point",
-      description: "You are standing at the south point of a crossroad. To the north, west, and east, you see an empty intersection.",
-      exits: {n: 1, e: 5, w: 7}
+      description: "You are standing at the south point of a crossroad. To the north, west, and east, you see an empty intersection. To the south you see a cave.",
+      exits: {n: 1, e: 5, w: 7, s: 12}
     },
     {
       id: 7,
@@ -45,14 +45,38 @@ module.exports = {
     {
       id: 8,
       name: "Western point",
-      description: "You are standing at the west point of a crossroad. To the east, north, and south, you see an empty intersection.",
-      exits: {e: 1, s: 7, n: 9}
+      description: "You are standing at the west point of a crossroad. To the east, north, and south, you see an empty intersection. To the west you see a cave.",
+      exits: {e: 1, s: 7, n: 9, w: 13}
     },
     {
       id: 9,
       name: "Northwestern point",
       description: "You are standing at the northwestern point of a crossroad. To the east and south, you see an empty intersection.",
       exits: {e: 2, s: 8}
+    },
+    {
+      id: 10,
+      name: "Northern cave",
+      description: "You are standing in a cave. To the south you see a path leading to an intersection",
+      exits: {s: 2}
+    },
+    {
+      id: 11,
+      name: "Eastern cave",
+      description: "You are standing in a cave. To the west you see a path leading to an intersection",
+      exits: {w: 4}
+    },
+    {
+      id: 12,
+      name: "Southern cave",
+      description: "You are standing in a cave. To the north you see a path leading to an intersection",
+      exits: {n: 6}
+    },
+    {
+      id: 13,
+      name: "Northern cave",
+      description: "You are standing in a cave. To the east you see a path leading to an intersection",
+      exits: {e: 8}
     }
   ],
   items: [
@@ -168,23 +192,53 @@ module.exports = {
       damageReduction: 15,
       room: 9,
       isArmor: true
+    },
+    {
+      name: "scroll",
+      description: "a magical scroll",
+      bonus: 10,
+      duration: 120000,
+      room: 10,
+      isBuff: true
+    },
+    {
+      name: "parchment",
+      description: "a parchment with a magic spell on it",
+      bonus: 15,
+      duration: 60000,
+      room: 11,
+      isBuff: true
+    },
+    {
+      name: "wand",
+      description: "a magic wand",
+      bonus: 20,
+      duration: 45000,
+      room: 12,
+      isBuff: true
     }
   ],
   enemies: [
     {
-      name: "minion",
+      name: "goblin",
       description: "A goblin minion",
       room: 3
     },
     {
-      name: "minion",
-      description: "A goblin minion",
+      name: "spider",
+      description: "A giant spider",
       room: 7
     },
     {
-      name: "king",
-      description: "A scary goblin king",
+      name: "bandit",
+      description: "A bandit thug",
       room: 2
     },
+    {
+      name: 'dragon',
+      description: 'A badass dragon',
+      room: 13,
+      isBoss: true
+    }
   ]
 }

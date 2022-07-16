@@ -46,7 +46,7 @@ class Enemy extends Character {
     this.takeSandwich();
   }
 
-  // goblins love sandwiches - if there's an item called sandwich in the room they will steal it!
+  // enemies love sandwiches - if there's an item called sandwich in the room they will steal it!
   takeSandwich() {
     // Fill this in
     // try to pick up a sandwich in the room

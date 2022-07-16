@@ -22,6 +22,7 @@ function printHelp() {
   console.log("  Type 'drop <item>' to drop an item");
   console.log("  Type 'eat <item>' to eat/drink a food item");
   console.log("  Tyle 'hit <enemy name> to attack an enemy");
+  console.log("  Type 'use <buff name> to use a buff");
   console.log("  Type 'n', 's', 'e', 'w' to move");
   console.log("");
 }
@@ -61,42 +62,54 @@ function processCommand() {
     if (cmd === 'h') {
       printHelp();
 
-    } else if (cmd === 'q') {
+    }
+    else if (cmd === 'q') {
       rl.close();
       process.exit();
 
-    } else if (cmd === 'l') {
+    }
+    else if (cmd === 'l') {
       player.currentRoom.printRoom();
 
-    } else if (cmd === 'i') {
+    }
+    else if (cmd === 'i') {
       player.printInventory();
 
-    } else if (['n', 's', 'e', 'w'].indexOf(cmd) >= 0) {
+    }
+    else if (['n', 's', 'e', 'w'].indexOf(cmd) >= 0) {
       let direction = cmd;
       player.move(direction);
 
-    } else if (cmd.startsWith("take ")) {
+    }
+    else if (cmd.startsWith("take ")) {
       let itemName = cmd.split(" ")[1];
 
       player.takeItem(itemName);
 
-    } else if (cmd.startsWith("drop ")) {
+    }
+    else if (cmd.startsWith("drop ")) {
       let itemName = cmd.split(" ")[1];
 
       player.dropItem(itemName);
 
-    } else if (cmd.startsWith("eat ")) {
+    }
+    else if (cmd.startsWith("eat ")) {
       let itemName = cmd.split(" ")[1];
 
       player.eatItem(itemName);
 
-    } else if (cmd.startsWith("hit ")) {
+    }
+    else if (cmd.startsWith("hit ")) {
       let enemyName = cmd.split(" ")[1];
 
       player.hit(enemyName);
+    }
+    else if (cmd.startsWith("use ")) {
+    let buffName = cmd.split(" ")[1];
 
-
-    } else {
+    player.useItem(buffName);
+    }
+    else {
       console.log("Invalid command. Type 'h' for help.");
     }
 

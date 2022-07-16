@@ -29,7 +29,7 @@ class Boss extends Enemy{
         // don't go anywhere
     }
 
-    // boss's don't care about sandwiches
+    // overwriting inherited version - bosses don't care about sandwiches
     takeSandwich() {
         // using this to overwrite the inherited method in case it ever gets called
         // this method should do nothing
